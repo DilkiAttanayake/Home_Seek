@@ -42,7 +42,7 @@ This project is a client-side web application for searching and displaying prope
 
 - **React JS**: For building the interactive user interface.
 - **HTML5**: For the structure and form elements.
-- **CSS3**: For styling the application and ensuring responsiveness.
+- **Bootsrap**: For responsive, mobile-first design and grid layout.
 - **JavaScript**: For handling the logic and interactivity of the application.
 - **Local Storage**: To store the user's favorite properties.
 
