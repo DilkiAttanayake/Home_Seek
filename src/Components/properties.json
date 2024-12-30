@@ -1,0 +1,115 @@
+{
+	"properties": [
+        {
+            "id":"prop1",
+			"type":"House",
+            "bedrooms":3,
+			"price":750000,
+			"tenure":"Freehold",
+			"description":"Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
+			"location":"Petts Wood Road, Petts Wood, Orpington BR5",
+			"picture":"images/prop1pic1small.jpg",
+			"url":"properties/prop1.html",
+            "added": {
+                "month":"October",
+                "day":12,
+                "year":2022
+            }
+        },
+		{
+            "id":"prop2",
+			"type":"Flat",
+            "bedrooms":2,
+			"price":399995,
+			"tenure":"Freehold",
+			"description":"Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms. This apartment being only five years old, is still under a 10 year building guarantee...",
+			"location":"Crofton Road Orpington BR6",
+			"picture":"images/prop2pic1small.jpg",
+			"url":"properties/prop2.html",
+            "added": {
+                "month":"September",
+                "day":14,
+                "year":2022
+            }
+        },
+        {
+           "id":"prop3",
+			"type":"House",
+            "bedrooms":7,
+			"price":1200000,
+			"tenure":"Freehold",
+			"description":"Presenting immaculately, this luxurious seven-bedroom, seven-bathroom detached residence is located on Queens Road, Orpington BR7. Spacious living in a prime location is provided by multiple reception areas, a state-of-the-art kitchen, and generously sized en-suite bedrooms, including a primary suite with a walk-in wardrobe and spa-like bathroom. The beautifully landscaped garden and ample parking add to its appeal. Conveniently located near top schools, amenities, and transport links, this exceptional home perfectly combines elegance and practicality.",
+			"location":"Queens Road Orpington BR7",
+			"picture":"Images/h 7.1.jpg",
+			"url":"properties/prop2.html",
+            "added": {
+                "month":"December",
+                "day":20,
+                "year":2023
+            } 
+        },
+        {
+            "id":"prop4",
+			"type":"House",
+            "bedrooms":2,
+			"price":20000,
+			"tenure":"Freehold",
+			"description":"An appealing two-bedroom house in Calvery Road, Orpington BR8, to let for Rs 20,000 per month, is ideal for a comfortable stay. With an enormous dining room, a bathroom that is well-appointed, and bright airy interiors, the home reflects a welcoming atmosphere. This is conveniently situated near local amenities and transport links and, therefore, has all the trappings of the ideal rental property to be let.",
+			"location":"Calvery Road Orpington BR8",
+			"picture":"Images/h 4.1.jpg",
+			"url":"properties/prop2.html",
+            "added": {
+                "month":"January",
+                "day":21,
+                "year":2024
+            } 
+        },
+        {
+            "id":"prop5",
+			"type":"House",
+            "bedrooms":4,
+			"price":1000000,
+			"tenure":"Freehold",
+			"description":"This impressive four-bedroom, three-bath house is located on Greenland Road, Orpington BR9, and is going for Rs. 1,000,000. Comfortably fitting in with style, the family house has spacious bedrooms, modern bathrooms, and a versatile layout. Come own this beautiful property in one of the most sought-after locations in town, with easy access to all amenities and transport links.",
+			"location":"Greenland Road Orpington BR9",
+			"picture":"Images/h 2.1.jpg",
+			"url":"properties/prop2.html",
+            "added": {
+                "month":"March",
+                "day":25,
+                "year":2024
+            } 
+        },
+        {
+            "id":"prop6",
+			"type":"Apartment",
+            "bedrooms":2,
+			"price":1000000,
+			"tenure":"Freehold",
+			"description":"This is a modern two-bedroom, one-bathroom apartment on Mountain Road, BR10, now available for rent. Enjoy comfortable and convenient living in this bright and airy interior, well-equipped kitchen, and cozy living space. This apartment is ideal for professionals or small families. The apartment lies at one of the prime locations, accessing all amenities and transportation links with ease. This is an excellent opportunity to rent.",
+			"location":"Mountain Road Orpington BR10",
+			"picture":"Images/h 3.1.jpg",
+			"url":"properties/prop2.html",
+            "added": {
+                "month":"July",
+                "day":5,
+                "year":2023
+        }
+    },
+    {
+        "id":"prop7",
+			"type":"House",
+            "bedrooms":3,
+			"price":35000,
+			"tenure":"Freehold",
+			"description":"This is a very nice three-bedroom, two-bathroom house on Silver Road, Orpington BR11, available for rent at Rs. 35,000/month. The living is spacious with a bright and inviting living room. The well-designed layout offers modern fixtures and comfortable bedrooms for family living. This is an ideal opportunity to rent a property in one of the sought-after areas of the town, with easy access to local amenities and transport links.",
+			"location":"Silver Road Orpington BR11",
+			"picture":"Images/h 1.1.jpg",
+			"url":"properties/prop2.html",
+            "added": {
+                "month":"May",
+                "day":15,
+                "year":2024
+        }
+    }
+]}
