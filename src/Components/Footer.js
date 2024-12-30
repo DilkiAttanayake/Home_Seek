@@ -3,7 +3,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css'; // font awesome for icon
 
 const Footer = () => {
     return (
-        <footer className="footer" style={{ backgroundColor: '#e3f2fd', textDecoration: 'none' }}>
+        <footer className="footer" style={{ backgroundColor: '#e3f2fd', textDecoration: 'none', marginTop: '20px', paddingTop: '20px', borderTop: '1px solid #90caf9' }}>
             <div className="container">
                 <div className="row">
                     <div className="col-md-4 text-secondary">

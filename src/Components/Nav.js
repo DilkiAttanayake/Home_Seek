@@ -10,9 +10,8 @@ function Nav() {
 
   
 return (
-
     // The nav bar component, using Bootstrap classes for styling
-    <nav className="navbar navbar-light" style={{ backgroundColor: '#e3f2fd' }}>
+    <nav className="navbar navbar-light" style={{ backgroundColor: '#e3f2fd', border: '2px solid #90caf9' }}>
         <div className="container-fluid">
 
             {/* Left side - Logo */}
@@ -27,25 +26,17 @@ return (
             </div>
 
             {/* Right side - Search Section */}
-            <div className="d-flex flex-column align-items-start">
-                
-
+            <div className="d-flex align-items-center">
                 {/* Search Input */}
-                <div className="d-flex w-100 mb-2">
-                    <input
-                        type="text"
-                        className="form-control me-2"
-                        placeholder="Search here"
-                        value={searchType}
-                        onChange={handleSearchTypeChange} // Update state on user input
-                    />
-                </div>
-
-                {/* Search Buttons */}
-                <div className="d-flex w-100">
-                <button type="button" class="btn btn-info me-2 w-50">for Rent</button>
-                <button type="button" class="btn btn-info w-50">for Sale</button>
-                </div>
+                <input
+                    type="text"
+                    className="form-control me-2"
+                    placeholder="Search here"
+                    value={searchType}
+                    onChange={handleSearchTypeChange} // Update state on user input
+                />
+                {/* Search Button */}
+                <button type="button" className="btn btn-info">Search</button>
             </div>
         </div>
     </nav>
