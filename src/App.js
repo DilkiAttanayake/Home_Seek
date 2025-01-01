@@ -1,7 +1,6 @@
 import React from 'react';
 import Nav from './components/Nav'; // import the navigation bar component
 import Footer from './components/Footer'; // import the footer component
-import Search from './components/Search';
 import Items from './components/Items'; // import the Items component to display properties
 
 
@@ -11,9 +10,6 @@ function App() {
     <div className="App">
       {/* Render the navigation bar */}
       <Nav />
-
-      {/* Render the Search component */}
-      <Search/>
 
       {/* Render the Items component to display the list of properties */}
       <Items />
