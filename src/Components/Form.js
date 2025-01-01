@@ -182,21 +182,23 @@ const Form = () => {
         {/* Results */}
       <div className="results-box" style={{ border: "4px solid grey", borderRadius: "5px", padding: "20px", backgroundColor: "#e3fdfd" }}>
         {results.length > 0 ? (
+
           results.map((property) => (
             <Card className="mb-3" key={property.id}>
               <Row className="g-0">
                 <Col md={4}>
+                
                   <Card.Img
-                    src={property.picture}
+                    src={`/${property.picture}`}
                     className="img-fluid rounded-start"
                     alt="Property Image"
                   />
+
                 </Col>
                 <Col md={8}>
                   <Card.Body>
                     <Card.Title>{property.type}</Card.Title>
-                    <Card.Title>{property.description}</Card.Title>
-                    <Card.Text><strong>Price:</strong> Rs.{property.price}</Card.Text>
+                    <Card.Text>{property.description}</Card.Text>
                     <Card.Text><strong>Bedrooms:</strong> {property.bedrooms}</Card.Text>
                     <Card.Text><strong>Location:</strong> {property.location}</Card.Text>
                     <Card.Text><strong>Added Date:</strong> {`${property.added.day}-${property.added.month}-${property.added.year}`}</Card.Text>
@@ -207,7 +209,7 @@ const Form = () => {
             </Card>
           ))
         ) : (
-          <p>No results found</p>
+          <p><strong>No results found</strong></p>
         )}
       </div>
     </div>
