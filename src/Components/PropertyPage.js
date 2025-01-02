@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom'; // Import Link component
 import { Carousel } from 'react-responsive-carousel'; // For image carousel
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Required CSS for carousel
+import PropertyDetails from './PropertyDetails'; // Import PropertyDetails component
 
 // properties data 
 import propertiesData from './properties.json';
@@ -26,6 +27,9 @@ const PropertyPage = () => {
             <div className="card-body">
               <div className="row">
                 <div className="col-md-12">
+                  {/* Property Details Tabs */}
+                  <PropertyDetails property={property} />
+
                   {/* Carousel for images */}
                   <Carousel showThumbs={true} infiniteLoop useKeyboardArrows>
                     {property.pictures && property.pictures.length > 0 ? (
@@ -44,6 +48,7 @@ const PropertyPage = () => {
                   {/* Property Details */}
                   <h2 className="mt-3">{property.type}</h2>
                   <p><strong>Price:</strong> Rs.{property.price}</p>
+                  <p><strong>Bedrooms:</strong> {property.bedrooms}</p>
                   <p><strong>Location:</strong> {property.location}</p>
                   <p><strong>Description:</strong></p>
                   <p>{property.description}</p>
