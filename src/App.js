@@ -1,24 +1,30 @@
 import React from 'react';
-import Nav from './components/Nav'; // import the navigation bar component
-import Footer from './components/Footer'; // import the footer component
-import Items from './components/Items'; // import the Items component to display properties
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Nav from './components/Nav';
+import Footer from './components/Footer';
+import Properties from './components/Properties';
+import PropertyPage from './components/PropertyPage'; // Import the PropertyPage component
 
-
-// the main app component of the React application
 function App() {
   return (
-    <div className="App">
-      {/* Render the navigation bar */}
-      <Nav />
+    <Router>
+      <div className="App">
+        <Nav />
+        
+        <Routes>
+          <Route path="/" element={<Properties />} />
+          <Route path="/property/:propertyId" element={<PropertyPage />} /> {/* Route for property page */}
 
-      {/* Render the Items component to display the list of properties */}
-      <Items />
+          <Route path="/nav/:propertyId" element={<PropertyPage />} /> {/* Route for property page */}
 
-      {/* Render the footer */}
-      <Footer />
-    </div>
+          <Route path="/form/:propertyId" element={<PropertyPage />} /> {/* Route for property page */}
+
+        </Routes>
+
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
-// export the App component so it can be used in other parts of the application
 export default App;
