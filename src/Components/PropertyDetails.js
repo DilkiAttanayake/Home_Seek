@@ -1,0 +1,37 @@
+import React from 'react';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+
+const PropertyDetails = ({ property }) => {
+  return (
+    <Tabs>
+      <TabList>
+        <Tab><strong>Description</strong></Tab>
+        <Tab><strong>Floor Plan</strong></Tab>
+        <Tab><strong>Map</strong></Tab>
+      </TabList>
+
+      <TabPanel>
+        <p>{property.card}</p>
+      </TabPanel>
+      <TabPanel>
+        <h4 style={{color:'#575e62'}}>Floor Plan</h4>
+        <img src={`/${property.floorPlan}`} alt="Floor Plan" style={{ width: '100%', height:'550px' }} />
+      </TabPanel>
+      <TabPanel>
+        <h4 style={{color:'#575e62'}}>Google Map</h4>
+        <iframe
+          src={`https://www.google.com/maps?q=${property.location}&output=embed`}
+          width="100%"
+          height="450"
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+          title="Google Map"
+        ></iframe>
+      </TabPanel>
+    </Tabs>
+  );
+};
+
+export default PropertyDetails;
