@@ -27,7 +27,7 @@ const Footer = () => {
                     </div>
 
                     <div className="col-md-4 text-primary text-end">
-                        <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} style={{ textDecoration: 'none' }}>
+                        <a href="/" style={{ textDecoration: 'none' }}>
                             <i className="fas fa-home"></i> Home
                         </a>
                     </div>
