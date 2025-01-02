@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import propertiesData from "./properties.json";
 import { Button, Form as BootstrapForm, Row, Col, Card, Alert } from "react-bootstrap";
 import Select from 'react-select'; // For enhanced select dropdowns
+import { Link } from 'react-router-dom'; // Import Link component
 
 const Form = () => {
   const [searchCriteria, setSearchCriteria] = useState({
@@ -188,11 +189,12 @@ const Form = () => {
               <Row className="g-0">
                 <Col md={4}>
                 
-                  <Card.Img
-                    src={`/${property.picture}`}
-                    className="img-fluid rounded-start"
-                    alt="Property Image"
-                  />
+                <Card.Img
+                  src={`/${Array.isArray(property.pictures) && property.pictures.length > 0 ? property.pictures[0] : 'default.webp'}`}
+                  className="img-fluid rounded-start"
+                  alt={property.type || 'Property Image'}
+                />
+
 
                 </Col>
                 <Col md={8}>
@@ -202,7 +204,7 @@ const Form = () => {
                     <Card.Text><strong>Bedrooms:</strong> {property.bedrooms}</Card.Text>
                     <Card.Text><strong>Location:</strong> {property.location}</Card.Text>
                     <Card.Text><strong>Added Date:</strong> {`${property.added.day}-${property.added.month}-${property.added.year}`}</Card.Text>
-                    <a href={property.url} className="btn btn-primary">View Property</a>
+                   <Link to={`/property/${property.id}`} className="btn btn-link" style={{ textDecoration: 'none', float:'right' }}>View Details</Link>
                   </Card.Body>
                 </Col>
               </Row>
