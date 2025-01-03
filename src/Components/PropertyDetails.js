@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import DOMPurify from 'dompurify'; // Import DOMPurify for sanitizing HTML
 
 const PropertyDetails = ({ property }) => {
   return (
@@ -21,7 +22,8 @@ const PropertyDetails = ({ property }) => {
       <TabPanel>
         <h4 style={{color:'#575e62'}}>Google Map</h4>
         <iframe
-          src={`https://www.google.com/maps?q=${property.location}&output=embed`}
+          
+          src={`https://www.google.com/maps?q=${DOMPurify.sanitize(property.location)}&output=embed`}
           width="100%"
           height="450"
           style={{ border: 0 }}
