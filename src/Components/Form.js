@@ -1,12 +1,12 @@
 import React, { useState } from "react"; // Import React and useState hook
-import propertiesData from "./properties.json"; 
+import propertiesData from "./properties.json";
 import { Button, Form as BootstrapForm, Row, Col, Card, Alert } from "react-bootstrap"; // Import Bootstrap components
 import Select from 'react-select'; // Import Select component for enhanced dropdowns
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 import DOMPurify from 'dompurify'; // Import DOMPurify for sanitizing HTML
 
-const Form = () => {
-  
+const Form = ({ favoriteProperties }) => {
+
   // Define state for search criteria, results, and error message
   const [searchCriteria, setSearchCriteria] = useState({
     type: "",
@@ -214,8 +214,37 @@ const Form = () => {
           <p><strong>No results found</strong></p> // Display message if no results found
         )}
       </div>
+
+      <h4 style={{ color: '#575e62', margin: '20px 20px' }}>Favorites <i className="fas fa-heart"></i> </h4>
+
+      {favoriteProperties.length === 0 ? (
+        <p style={{ margin: '20px 20px' }}><strong>No favorites yet.</strong></p> // Display message if no favorites
+      ) : (
+        <>
+          <ul className="list-group">
+            {favoriteProperties.map(fav => (
+              <li
+                key={fav.id}
+                className="list-group-item d-flex justify-content-between align-items-center"
+                style={{ height: '100px', marginBottom: '10px', backgroundColor: '#d9e6f0' }}
+              >
+                <div className="d-flex align-items-center">
+                  <img
+                    src={`/${Array.isArray(fav.pictures) && fav.pictures.length > 0 ? fav.pictures[0] : 'default.webp'}`}
+                    alt={fav.type || 'No image available'}
+                    width="70"
+                    height="70"
+                    className="mr-2"
+                  />
+                  <span style={{ marginLeft: '20px' }}>{fav.type}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 };
 
-export default Form; // Export the Form component
+export default Form;
