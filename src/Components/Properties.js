@@ -9,8 +9,16 @@ const Properties = () => {
     const [showAdvancedSearch, setShowAdvancedSearch] = useState(false); // State to toggle advanced search
 
     useEffect(() => {
-        setItems(propertiesData.properties); // Set items state with properties data on component mount
+        // Load items and favorites from local storage on component mount
+        setItems(propertiesData.properties);
+        const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        setFavorites(storedFavorites);
     }, []);
+
+    useEffect(() => {
+        // Save favorites to local storage whenever they change
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }, [favorites]);
 
     const toggleAdvancedSearch = () => {
         setShowAdvancedSearch(!showAdvancedSearch); // Toggle advanced search visibility
@@ -63,7 +71,7 @@ const Properties = () => {
 
             {showAdvancedSearch ? (
                 <div>
-                    <Form /> {/* Render Form component if advanced search is shown */}
+                    <Form favoriteProperties={favorites} /> {/* Pass favorites to Form component */}
                 </div>
             ) : (
                 <div className="row">
@@ -120,6 +128,7 @@ const Properties = () => {
                             </div>
                         </div>
                     </div>
+
                     <div
                         className="col-md-4"
                         style={{
@@ -134,7 +143,6 @@ const Properties = () => {
                         onDrop={handleDropToFavorites} // Handle drop event on favorites box
                     >
                         <h4 style={{color: '#575e62', margin: '20px 20px'}}>Favorites <i className="fas fa-heart"></i> </h4>
-
                         {favorites.length === 0 ? (
                             <p style={{margin:'20px 20px'}}><strong>No favorites yet.</strong></p> // Display message if no favorites
                         ) : (
@@ -156,7 +164,7 @@ const Properties = () => {
                                                     height="70" 
                                                     className="mr-2" 
                                                 />
-                                                {fav.type}
+                                                <span style={{ marginLeft: '20px' }}>{fav.type}</span>
                                             </div>
                                             <button className="btn btn-danger btn-sm" onClick={() => removeFromFavorites(fav)}>Remove</button> {/* Button to remove item from favorites */}
                                         </li>
