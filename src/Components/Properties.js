@@ -1,53 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // Import Link component
-import propertiesData from './properties.json';
-import Form from './Form';
+import { Link } from 'react-router-dom'; // Import Link component for navigation
+import propertiesData from './properties.json'; // Import properties data from JSON file
+import Form from './Form'; // Import Form component
 
 const Properties = () => {
-    const [favorites, setFavorites] = useState([]);
-    const [items, setItems] = useState([]);
-    const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
+    const [favorites, setFavorites] = useState([]); // State to store favorite properties
+    const [items, setItems] = useState([]); // State to store available properties
+    const [showAdvancedSearch, setShowAdvancedSearch] = useState(false); // State to toggle advanced search
 
     useEffect(() => {
-        setItems(propertiesData.properties);
+        setItems(propertiesData.properties); // Set items state with properties data on component mount
     }, []);
 
     const toggleAdvancedSearch = () => {
-        setShowAdvancedSearch(!showAdvancedSearch);
+        setShowAdvancedSearch(!showAdvancedSearch); // Toggle advanced search visibility
     };
 
     const addToFavorites = (item) => {
-        if (!favorites.some(fav => fav.id === item.id)) {
-            setFavorites([...favorites, item]);
+        if (!favorites.some(fav => fav.id === item.id)) { // Check if item is not already in favorites
+            setFavorites([...favorites, item]); // Add item to favorites
         } else {
-            alert("Property already added");
+            alert("Property already added"); // Alert if item is already in favorites
         }
     };
 
     const removeFromFavorites = (item) => {
-        setFavorites(favorites.filter(fav => fav.id !== item.id));
+        setFavorites(favorites.filter(fav => fav.id !== item.id)); // Remove item from favorites
     };
 
     const clearFavorites = () => {
-        setFavorites([]);
+        setFavorites([]); // Clear all favorites
     };
 
     const handleDragStart = (event, item) => {
-        event.dataTransfer.setData("item", JSON.stringify(item));
+        event.dataTransfer.setData("item", JSON.stringify(item)); // Set dragged item data
     };
 
     const handleDropToFavorites = (event) => {
-        const item = JSON.parse(event.dataTransfer.getData("item"));
-        addToFavorites(item);
+        const item = JSON.parse(event.dataTransfer.getData("item")); // Get dropped item data
+        addToFavorites(item); // Add dropped item to favorites
     };
 
     const handleDropToItems = (event) => {
-        const item = JSON.parse(event.dataTransfer.getData("item"));
-        removeFromFavorites(item);
+        const item = JSON.parse(event.dataTransfer.getData("item")); // Get dropped item data
+        removeFromFavorites(item); // Remove dropped item from favorites
     };
 
     const allowDrop = (event) => {
-        event.preventDefault();
+        event.preventDefault(); // Allow drop event
     };
 
     return (
@@ -55,7 +55,7 @@ const Properties = () => {
             <div className="d-flex justify-content-center mb-3">
                 <button 
                     className="btn btn-primary"
-                    onClick={toggleAdvancedSearch}
+                    onClick={toggleAdvancedSearch} // Toggle advanced search on button click
                 >
                     {showAdvancedSearch ? "Hide Advanced Search" : "Show Advanced Search"}
                 </button>
@@ -63,7 +63,7 @@ const Properties = () => {
 
             {showAdvancedSearch ? (
                 <div>
-                    <Form /> 
+                    <Form /> {/* Render Form component if advanced search is shown */}
                 </div>
             ) : (
                 <div className="row">
@@ -77,8 +77,8 @@ const Properties = () => {
                                 backgroundColor: '#d9e6f0',
                                 marginBottom: '20px'
                             }}
-                            onDragOver={allowDrop}
-                            onDrop={handleDropToItems}
+                            onDragOver={allowDrop} // Allow drop on available items box
+                            onDrop={handleDropToItems} // Handle drop event on available items box
                         >
                             <h4 style={{color: '#575e62', margin: '20px 20px' }}>Available</h4>
                             <div className="row">
@@ -87,7 +87,7 @@ const Properties = () => {
                                         className="col-md-6"
                                         key={index}
                                         draggable
-                                        onDragStart={(event) => handleDragStart(event, item)}
+                                        onDragStart={(event) => handleDragStart(event, item)} // Handle drag start event
                                     >
                                         <div
                                             className="card mb-4"
@@ -105,9 +105,6 @@ const Properties = () => {
                                                 className="card-img-top" 
                                                 alt={item.type || 'No image available'} 
                                             />
-
-                                            
-
                                             <div className="card-body">
                                                 <h5 className="card-title">{item.type}</h5>
                                                 <p className="card-text"><strong>Price:</strong> Rs.{item.price}</p>
@@ -115,7 +112,7 @@ const Properties = () => {
                                                 <p className="card-text"><strong>Location:</strong> {item.location}</p>
                                                 <p className="card-text"><strong>Added Date:</strong> {`${item.added.day}-${item.added.month}-${item.added.year}`}</p>
                                                 <Link to={`/property/${item.id}`} className="btn btn-link" style={{ textDecoration: 'none', float:'right' }}>View Details</Link> {/* Link to the property page */}
-                                                <button className="btn btn-primary" onClick={() => addToFavorites(item)} style={{ float: 'left'}}>Add to Favorites</button>
+                                                <button className="btn btn-primary" onClick={() => addToFavorites(item)} style={{ float: 'left'}}>Add to Favorites</button> {/* Button to add item to favorites */}
                                             </div>
                                         </div>
                                     </div>
@@ -133,13 +130,13 @@ const Properties = () => {
                             width: '27%',
                             marginLeft: '80px'
                         }}
-                        onDragOver={allowDrop}
-                        onDrop={handleDropToFavorites}
+                        onDragOver={allowDrop} // Allow drop on favorites box
+                        onDrop={handleDropToFavorites} // Handle drop event on favorites box
                     >
                         <h4 style={{color: '#575e62', margin: '20px 20px'}}>Favorites <i className="fas fa-heart"></i> </h4>
 
                         {favorites.length === 0 ? (
-                            <p style={{margin:'20px 20px'}}><strong>No favorites yet.</strong></p>
+                            <p style={{margin:'20px 20px'}}><strong>No favorites yet.</strong></p> // Display message if no favorites
                         ) : (
                             <>
                                 <ul className="list-group">
@@ -149,7 +146,7 @@ const Properties = () => {
                                             className="list-group-item d-flex justify-content-between align-items-center"
                                             style={{ height: '100px', marginBottom: '10px' }}
                                             draggable
-                                            onDragStart={(event) => handleDragStart(event, fav)}
+                                            onDragStart={(event) => handleDragStart(event, fav)} // Handle drag start event
                                         >
                                             <div>
                                                 <img 
@@ -161,15 +158,12 @@ const Properties = () => {
                                                 />
                                                 {fav.type}
                                             </div>
-
-
-
-                                            <button className="btn btn-danger btn-sm" onClick={() => removeFromFavorites(fav)}>Remove</button>
+                                            <button className="btn btn-danger btn-sm" onClick={() => removeFromFavorites(fav)}>Remove</button> {/* Button to remove item from favorites */}
                                         </li>
                                     ))}
                                 </ul>
                                 <div className="d-flex justify-content-end">
-                                    <button className="btn btn-warning mt-3" onClick={clearFavorites}>Clear All</button>
+                                    <button className="btn btn-warning mt-3" onClick={clearFavorites}>Clear All</button> {/* Button to clear all favorites */}
                                 </div>
                             </>
                         )}

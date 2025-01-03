@@ -13,16 +13,22 @@ const PropertyDetails = ({ property }) => {
       </TabList>
 
       <TabPanel>
+        {/* Display property description */}
         <p>{property.card}</p>
       </TabPanel>
       <TabPanel>
-        <h4 style={{color:'#575e62'}}>Floor Plan</h4>
-        <img src={`/${property.floorPlan}`} alt="Floor Plan" style={{ width: '100%', height:'550px' }} />
+        {/* Display floor plan image */}
+        <h4 style={{ color: '#575e62' }}>Floor Plan</h4>
+        <img 
+          src={`/${property.floorPlan}`} 
+          alt="Floor Plan" 
+          style={{ width: '100%', height: '550px' }} 
+        />
       </TabPanel>
       <TabPanel>
-        <h4 style={{color:'#575e62'}}>Google Map</h4>
+        {/* Display Google Map with sanitized location */}
+        <h4 style={{ color: '#575e62' }}>Google Map</h4>
         <iframe
-          
           src={`https://www.google.com/maps?q=${DOMPurify.sanitize(property.location)}&output=embed`}
           width="100%"
           height="450"

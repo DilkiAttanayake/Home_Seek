@@ -3,7 +3,6 @@ import { useParams, Link } from 'react-router-dom'; // Import Link component
 import { Carousel } from 'react-responsive-carousel'; // For image carousel
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Required CSS for carousel
 import PropertyDetails from './PropertyDetails'; // Import PropertyDetails component
-
 import DOMPurify from 'dompurify'; // Import DOMPurify for sanitizing HTML
 
 // properties data 
@@ -16,6 +15,7 @@ const PropertyPage = () => {
   // Find the property details based on the property id, id is a string so we need to convert it to a number
   const property = propertiesData.properties.find(item => item.id === propertyId);
 
+  // If property not found, display a message
   if (!property) {
     return <div>Property not found.</div>;
   }
@@ -25,7 +25,7 @@ const PropertyPage = () => {
       <div className="row justify-content-center">
         <div className="col-md-8">
           {/* Box to display property details */}
-          <div className="card shadow-sm" style={{backgroundColor: '#c4ced6'}}>
+          <div className="card shadow-sm" style={{ backgroundColor: '#c4ced6' }}>
             <div className="card-body">
               <div className="row">
                 <div className="col-md-12">
@@ -42,7 +42,7 @@ const PropertyPage = () => {
                       ))
                     ) : (
                       <div>
-                        <img src="/default.webp" alt="No images available" className="img-fluid"/>
+                        <img src="/default.webp" alt="No images available" className="img-fluid" />
                       </div>
                     )}
                   </Carousel>
@@ -53,7 +53,6 @@ const PropertyPage = () => {
                   <p><strong>Location:</strong> {DOMPurify.sanitize(property.location)}</p> {/* Sanitize the property location */}
                   <p><strong>Description:</strong></p>
                   <p>{DOMPurify.sanitize(property.description)}</p> {/* Sanitize the property description */}
-                  
 
                   {/* Back to Home Link */}
                   <Link to="/" className="btn btn-link">Back to Home</Link>

@@ -9,19 +9,16 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Nav />
+        <Nav /> {/* Navigation bar component */}
         
         <Routes>
-          <Route path="/" element={<Properties />} />
-          <Route path="/property/:propertyId" element={<PropertyPage />} /> {/* Route for property page */}
-
+          <Route path="/" element={<Properties />} /> {/* Route for properties listing */}
+          <Route path="/property/:propertyId" element={<PropertyPage />} /> {/* Route for individual property page */}
           <Route path="/nav/:propertyId" element={<PropertyPage />} /> {/* Route for property page */}
-
           <Route path="/form/:propertyId" element={<PropertyPage />} /> {/* Route for property page */}
-
         </Routes>
 
-        <Footer />
+        <Footer /> {/* Footer component */}
       </div>
     </Router>
   );

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import propertiesData from "./properties.json";
-import { Button, Form as BootstrapForm, Row, Col, Card, Alert } from "react-bootstrap";
-import Select from 'react-select'; // For enhanced select dropdowns
-import { Link } from 'react-router-dom'; // Import Link component
-
-
+import React, { useState } from "react"; // Import React and useState hook
+import propertiesData from "./properties.json"; 
+import { Button, Form as BootstrapForm, Row, Col, Card, Alert } from "react-bootstrap"; // Import Bootstrap components
+import Select from 'react-select'; // Import Select component for enhanced dropdowns
+import { Link } from 'react-router-dom'; 
 import DOMPurify from 'dompurify'; // Import DOMPurify for sanitizing HTML
 
 const Form = () => {
+  
+  // Define state for search criteria, results, and error message
   const [searchCriteria, setSearchCriteria] = useState({
     type: "",
     minPrice: "",
@@ -18,21 +18,20 @@ const Form = () => {
     postcode: "",
   });
 
-  const [results, setResults] = useState([]);
-  const [error, setError] = useState("");
+  const [results, setResults] = useState([]); // State to store search results
+  const [error, setError] = useState(""); // State to store error message
 
+  // Handle input changes and sanitize the input to prevent XSS
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
-    // Sanitize the input to prevent XSS
     const sanitizedValue = DOMPurify.sanitize(value);
-
     setSearchCriteria((prevState) => ({
       ...prevState,
       [name]: sanitizedValue,
     }));
   };
 
+  // Handle changes in the select dropdown
   const handleSelectChange = (selectedOption) => {
     setSearchCriteria((prevState) => ({
       ...prevState,
@@ -40,6 +39,7 @@ const Form = () => {
     }));
   };
 
+  // Handle the search button click
   const handleSearch = () => {
     // Validate the form to ensure that price and bedroom ranges are valid
     if (
@@ -50,8 +50,7 @@ const Form = () => {
       return;
     }
 
-    
-
+    // Filter the properties based on search criteria
     const filteredResults = propertiesData.properties.filter((property) => {
       const addedDate = new Date(
         `${property.added.year}-${property.added.month}-${property.added.day}`
@@ -79,7 +78,7 @@ const Form = () => {
       );
     });
 
-    setResults(filteredResults);
+    setResults(filteredResults); // Update the results state with filtered properties
   };
 
   return (
@@ -176,10 +175,10 @@ const Form = () => {
               </Col>
             </Row>
 
-            {error && <Alert variant="danger">{error}</Alert>}
+            {error && <Alert variant="danger">{error}</Alert>} {/* Display error message if any */}
 
             <div className="d-flex justify-content-center">
-              <Button variant="info" onClick={handleSearch} aria-label="Search Button">Search</Button>
+              <Button variant="info" onClick={handleSearch} aria-label="Search Button">Search</Button> {/* Search button */}
             </div>
           </BootstrapForm>
         </div>
@@ -212,13 +211,11 @@ const Form = () => {
             </Card>
           ))
         ) : (
-          <p><strong>No results found</strong></p>
+          <p><strong>No results found</strong></p> // Display message if no results found
         )}
       </div>
-
-      
     </div>
   );
 };
 
-export default Form;
+export default Form; // Export the Form component
