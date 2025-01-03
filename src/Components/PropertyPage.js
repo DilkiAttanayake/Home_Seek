@@ -4,6 +4,8 @@ import { Carousel } from 'react-responsive-carousel'; // For image carousel
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Required CSS for carousel
 import PropertyDetails from './PropertyDetails'; // Import PropertyDetails component
 
+import DOMPurify from 'dompurify'; // Import DOMPurify for sanitizing HTML
+
 // properties data 
 import propertiesData from './properties.json';
 
@@ -46,12 +48,12 @@ const PropertyPage = () => {
                   </Carousel>
 
                   {/* Property Details */}
-                  <h2 className="mt-3">{property.type}</h2>
-                  <p><strong>Price:</strong> Rs.{property.price}</p>
-                  <p><strong>Bedrooms:</strong> {property.bedrooms}</p>
-                  <p><strong>Location:</strong> {property.location}</p>
+                  <h2 className="mt-3">{DOMPurify.sanitize(property.type)}</h2> {/* Sanitize the property type */}
+                  <p><strong>Price:</strong> Rs.{DOMPurify.sanitize(property.price.toString())}</p> {/* Sanitize the property price */}
+                  <p><strong>Location:</strong> {DOMPurify.sanitize(property.location)}</p> {/* Sanitize the property location */}
                   <p><strong>Description:</strong></p>
-                  <p>{property.description}</p>
+                  <p>{DOMPurify.sanitize(property.description)}</p> {/* Sanitize the property description */}
+                  
 
                   {/* Back to Home Link */}
                   <Link to="/" className="btn btn-link">Back to Home</Link>
