@@ -15,7 +15,7 @@ const Form = ({ favoriteProperties }) => {
     maxPrice: "",
     minBedrooms: "",
     maxBedrooms: "",
-    addedDate: "",
+    addedDate: null,
     postcode: "",
   });
 
@@ -24,16 +24,15 @@ const Form = ({ favoriteProperties }) => {
 
   // Handle input changes and sanitize the input to prevent XSS
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    const sanitizedValue = DOMPurify.sanitize(value);
+    const { name, value } = e.target; // Get the name and value of the input field
+    const sanitizedValue = DOMPurify.sanitize(value); // Sanitize the input value
     setSearchCriteria((prevState) => ({
-      ...prevState,
-      [name]: sanitizedValue,
+      ...prevState, // Keep the previous state
+      [name]: sanitizedValue, // Update the specific field with the sanitized value
     }));
   };
 
   const [hasSearched, setHasSearched] = useState(false); // Tracks if a search has been executed
-
 
   // Handle changes in the select dropdown
   const handleSelectChange = (value) => {
@@ -90,12 +89,11 @@ const Form = ({ favoriteProperties }) => {
   return (
     <div className="container mt-5">
       <div className="d-flex justify-content-center">
-      <div className="search-form mb-4 p-4" style={{ border: "2px solid grey", borderRadius: "5px", backgroundColor: "#A4D8E1", width: "45%" }}>
-  
+        <div className="search-form mb-4 p-4" style={{ border: "2px solid grey", borderRadius: "5px", backgroundColor: "#A4D8E1", width: "45%" }}>
           <form>
-          <Row>
-            <Col md={12}>
-            <label htmlFor="type" className="form-label">Type</label>
+            <Row>
+              <Col md={12}>
+                <label htmlFor="type" className="form-label">Type</label>
                 <Combobox
                   id="type"
                   value={searchCriteria.type || "Any"}
@@ -145,7 +143,6 @@ const Form = ({ favoriteProperties }) => {
                 />
               </Col>
 
-
               <Col md={6}>
                 <label htmlFor="maxBedrooms" className="form-label">Max Bedrooms</label>
                 <input
@@ -165,7 +162,7 @@ const Form = ({ favoriteProperties }) => {
                 <DateTimePicker
                   name="addedDate"
                   value={searchCriteria.addedDate}
-                  onChange={date => setSearchCriteria({ ...searchCriteria, addedDate: date })}
+                  onChange={(date) => setSearchCriteria({ ...searchCriteria, addedDate: date })}
                   aria-label="Added Date"
                 />
               </Col>
@@ -196,36 +193,36 @@ const Form = ({ favoriteProperties }) => {
 
       {/* Results */}
       {hasSearched && (
-      <div className="results-box" style={{ border: "2px solid grey", borderRadius: "5px", padding: "20px", backgroundColor: "#A4D8E1" }}>
+        <div className="results-box" style={{ border: "2px solid grey", borderRadius: "5px", padding: "20px", backgroundColor: "#A4D8E1" }}>
+          {results.length > 0 ? (
+            results.map((property) => (
+              <Card className="mb-3" key={property.id}>
+                <Row className="g-0">
+                  <Col md={4}>
+                    <Card.Img
+                      src={`/${Array.isArray(property.pictures) && property.pictures.length > 0 ? property.pictures[0] : 'default.webp'}`}
+                      className="img-fluid rounded-start"
+                      alt={property.type || 'Property Image'}
+                    />
+                  </Col>
 
-        {results.length > 0 ? (
-          results.map((property) => (
-            <Card className="mb-3" key={property.id}>
-              <Row className="g-0">
-                <Col md={4}>
-                  <Card.Img
-                    src={`/${Array.isArray(property.pictures) && property.pictures.length > 0 ? property.pictures[0] : 'default.webp'}`}
-                    className="img-fluid rounded-start"
-                    alt={property.type || 'Property Image'}
-                  />
-                </Col>
-                <Col md={8}>
-                  <Card.Body>
-                    <Card.Title>{DOMPurify.sanitize(property.type)}</Card.Title>
-                    <Card.Text>{DOMPurify.sanitize(property.description)}</Card.Text>
-                    <Card.Text><strong>Bedrooms:</strong> {DOMPurify.sanitize(property.bedrooms)}</Card.Text>
-                    <Card.Text><strong>Location:</strong> {DOMPurify.sanitize(property.location)}</Card.Text>
-                    <Card.Text><strong>Added Date:</strong> {DOMPurify.sanitize(`${property.added.day}-${property.added.month}-${property.added.year}`)}</Card.Text>
-                    <Link to={`/property/${property.id}`} className="btn btn-link" style={{ textDecoration: 'none', float: 'right' }}>View Details</Link>
-                  </Card.Body>
-                </Col>
-              </Row>
-            </Card>
-          ))
-        )  : hasSearched ?  (
-          <p>No results found</p> // Display message if no results found
-        ) : null} {/* Display nothing before searching */}
-      </div>
+                  <Col md={8}>
+                    <Card.Body>
+                      <Card.Title>{DOMPurify.sanitize(property.type)}</Card.Title>
+                      <Card.Text>{DOMPurify.sanitize(property.description)}</Card.Text>
+                      <Card.Text><strong>Bedrooms:</strong> {DOMPurify.sanitize(property.bedrooms)}</Card.Text>
+                      <Card.Text><strong>Location:</strong> {DOMPurify.sanitize(property.location)}</Card.Text>
+                      <Card.Text><strong>Added Date:</strong> {DOMPurify.sanitize(`${property.added.day}-${property.added.month}-${property.added.year}`)}</Card.Text>
+                      <Link to={`/property/${property.id}`} className="btn btn-link" style={{ textDecoration: 'none', float: 'right' }}>View Details</Link>
+                    </Card.Body>
+                  </Col>
+                </Row>
+              </Card>
+            ))
+          ) : hasSearched ? (
+            <p>No results found</p> // Display message if no results found
+          ) : null} {/* Display nothing before searching */}
+        </div>
       )}
 
       <h4 style={{ color: '#575e62', margin: '20px 20px' }}>Favorites <i className="fas fa-heart"></i> </h4>
