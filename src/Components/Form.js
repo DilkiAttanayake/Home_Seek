@@ -2,9 +2,9 @@ import React, { useState } from "react"; // Import React and useState hook
 import propertiesData from "./properties.json";
 import { Button, Row, Col, Card, Alert } from "react-bootstrap"; // Import Bootstrap components
 import { Link } from 'react-router-dom';
-import DOMPurify from 'dompurify'; // Import DOMPurify for sanitizing HTML
 import { Combobox, DateTimePicker } from 'react-widgets'; // Import React Widgets
 import "react-widgets/styles.css"  // Import React Widgets CSS
+import DOMPurify from 'dompurify'; // Import DOMPurify for sanitizing HTML
 
 const Form = ({ favoriteProperties }) => {
 
@@ -90,11 +90,11 @@ const Form = ({ favoriteProperties }) => {
   return (
     <div className="container mt-5">
       <div className="d-flex justify-content-center">
-      <div className="search-form mb-4 p-4" style={{ border: "2px solid grey", borderRadius: "5px", backgroundColor: "#A4D8E1", width: "100%" }}>
+      <div className="search-form mb-4 p-4" style={{ border: "2px solid grey", borderRadius: "5px", backgroundColor: "#A4D8E1", width: "45%" }}>
   
           <form>
-          <Row className="g-3">
-            <Col md={6}>
+          <Row>
+            <Col md={12}>
             <label htmlFor="type" className="form-label">Type</label>
                 <Combobox
                   id="type"
@@ -104,8 +104,10 @@ const Form = ({ favoriteProperties }) => {
                   aria-label="Property Type"
                 />
               </Col>
+            </Row>
 
-              <Col md={3}>
+            <Row className="g-3">
+              <Col md={6}>
                 <label htmlFor="minPrice" className="form-label">Min Price</label>
                 <input
                   type="number"
@@ -117,7 +119,7 @@ const Form = ({ favoriteProperties }) => {
                 />
               </Col>
 
-              <Col md={3}>
+              <Col md={6}>
                 <label htmlFor="maxPrice" className="form-label">Max Price</label>
                 <input
                   type="number"
@@ -128,9 +130,10 @@ const Form = ({ favoriteProperties }) => {
                   aria-label="Maximum Price"
                 />
               </Col>
+            </Row>
 
-
-              <Col md={3}>
+            <Row className="g-3">
+              <Col md={6}>
                 <label htmlFor="minBedrooms" className="form-label">Min Bedrooms</label>
                 <input
                   type="number"
@@ -143,7 +146,7 @@ const Form = ({ favoriteProperties }) => {
               </Col>
 
 
-              <Col md={3}>
+              <Col md={6}>
                 <label htmlFor="maxBedrooms" className="form-label">Max Bedrooms</label>
                 <input
                   type="number"
@@ -154,8 +157,10 @@ const Form = ({ favoriteProperties }) => {
                   aria-label="Maximum Bedrooms"
                 />
               </Col>
+            </Row>
 
-              <Col md={6}>
+            <Row>
+              <Col md={12}>
                 <label htmlFor="addedDate" className="form-label">Added Date</label>
                 <DateTimePicker
                   name="addedDate"
@@ -164,8 +169,10 @@ const Form = ({ favoriteProperties }) => {
                   aria-label="Added Date"
                 />
               </Col>
+            </Row>
 
-              <Col md={6}>
+            <Row>
+              <Col md={12}>
                 <label htmlFor="postcode" className="form-label">Postcode</label>
                 <input
                   type="text"
