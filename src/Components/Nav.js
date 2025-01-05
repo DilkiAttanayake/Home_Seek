@@ -36,7 +36,7 @@ function Nav() {
 
             {/* Navbar */}
             <nav className="navbar navbar-light" style={{ backgroundColor: '#e3f2fd', border: '2px solid #90caf9' }}>
-                <div className="container-fluid">
+                <div className="container-fluid"> {/* Full width container */}
 
                     {/* Left side - Logo */}
                     <div className="navbar-brand">
@@ -46,29 +46,35 @@ function Nav() {
                     {/* Middle - Text */}
                     <div className="text-center flex-grow-1 text-primary">
                         <h2>Discover The Place You Dream</h2>
-                        <p>Search for the house you are looking for [for sale]</p>
+                        <p>Search for the home you are looking for [for sale]</p>
                     </div>
 
                     {/* Right side - Search Section */}
-                    <div className="d-flex align-items-center">
+                    <div className="d-flex align-items-left flex-column text-info">
 
-                        {/* Search Input */}
-                        <input
-                            type="text"
-                            className="form-control me-2"
-                            placeholder="Search here"
-                            value={searchType}
-                            onChange={handleSearchTypeChange} // Update state on user input
-                        />
+                        {/* Search Topic */}
+                        <p>Search for house or flat</p>
 
-                        {/* Search Button */}
-                        <button type="button" className="btn btn-info" onClick={handleSearch}>Search</button>
+                        {/* Search Input and Button in a Row */}
+                        <div className="d-flex align-items-center">
+                            {/* Search Input */}
+                            <input
+                                type="text"
+                                className="form-control me-2"
+                                placeholder="Search here"
+                                value={searchType}
+                                onChange={handleSearchTypeChange} // Update state on user input
+                            />
+
+                            {/* Search Button */}
+                            <button type="button" className="btn btn-info" onClick={handleSearch}>Search</button>
+                        </div>
                     </div>
-                </div>
-            </nav>
+                    </div>
+                    </nav>
 
-            {/* Search Results */}
-            <div className="container mt-4">
+                    {/* Search Results */}
+            <div className="container mt-4"> {/* mt: margin top */}
                 {showResults && filteredResults.length > 0 ? (
                     <div style={{ border: '1px solid grey)', padding: '20px', borderRadius: '5px', backgroundColor: '#c5d2dc' }}>
 
