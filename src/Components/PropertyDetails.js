@@ -5,7 +5,9 @@ import DOMPurify from 'dompurify'; // Import DOMPurify for sanitizing HTML
 
 const PropertyDetails = ({ property }) => {
   return (
+    
     <Tabs>
+
       <TabList>
         <Tab><strong>Description</strong></Tab>
         <Tab><strong>Floor Plan</strong></Tab>
@@ -40,7 +42,9 @@ const PropertyDetails = ({ property }) => {
           title="Google Map"
         ></iframe>
       </TabPanel>
+
     </Tabs>
+    
   );
 };
 

@@ -24,11 +24,13 @@ const PropertyPage = () => {
     <div className="container mt-4">
       <div className="row justify-content-center">
         <div className="col-md-8">
+
           {/* Box to display property details */}
           <div className="card shadow-sm" style={{ backgroundColor: '#c4ced6' }}>
             <div className="card-body">
               <div className="row">
                 <div className="col-md-12">
+
                   {/* Property Details Tabs */}
                   <PropertyDetails property={property} />
 

@@ -10,16 +10,16 @@ const Properties = () => {
     const [showAdvancedSearch, setShowAdvancedSearch] = useState(false); // State to toggle advanced search
 
     useEffect(() => {
+        // Save favorites to local storage whenever they change
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }, [favorites]);
+
+    useEffect(() => {
         // Load items and favorites from local storage on component mount
         setItems(propertiesData.properties);
         const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
         setFavorites(storedFavorites);
     }, []);
-
-    useEffect(() => {
-        // Save favorites to local storage whenever they change
-        localStorage.setItem('favorites', JSON.stringify(favorites));
-    }, [favorites]);
 
     const toggleAdvancedSearch = () => {
         setShowAdvancedSearch(!showAdvancedSearch); // Toggle advanced search visibility
@@ -68,15 +68,19 @@ const Properties = () => {
                 >
                     {showAdvancedSearch ? "Hide Advanced Search" : "Show Advanced Search"}
                 </button>
+
             </div>
 
             {showAdvancedSearch ? (
+
                 <div>
                     <Form favoriteProperties={favorites} /> {/* Pass favorites to Form component */}
                 </div>
             ) : (
+
                 <div className="row">
                     <div className="col-md-8">
+
                         <div
                             className="box"
                             style={{
@@ -86,10 +90,13 @@ const Properties = () => {
                                 backgroundColor: '#d9e6f0',
                                 marginBottom: '20px'
                             }}
+
                             onDragOver={allowDrop} // Allow drop on available items box
                             onDrop={handleDropToItems} // Handle drop event on available items box
                         >
+
                             <h4 style={{color: '#575e62', margin: '20px 20px' }}>Available</h4>
+
                             <div className="row">
                                 {items.map((item, index) => (
                                     <div
@@ -98,6 +105,7 @@ const Properties = () => {
                                         draggable
                                         onDragStart={(event) => handleDragStart(event, item)} // Handle drag start event
                                     >
+
                                         <div
                                             className="card mb-4"
                                             style={{
@@ -109,11 +117,13 @@ const Properties = () => {
                                                 marginRight: '20px'
                                             }}
                                         >
+
                                             <img 
                                                 src={`/${item.pictures && Array.isArray(item.pictures) && item.pictures.length > 0 ? item.pictures[0] : 'default.webp'}`} 
                                                 className="card-img-top" 
                                                 alt={item.type || 'No image available'} 
                                             />
+
                                             <div className="card-body">
                                                 <h5 className="card-title">{DOMPurify.sanitize(item.type)}</h5>
                                                 <p className="card-text"><strong>Price:</strong> Rs.{DOMPurify.sanitize(item.price.toString())}</p>
@@ -123,6 +133,7 @@ const Properties = () => {
                                                 <Link to={`/property/${item.id}`} className="btn btn-link" style={{ textDecoration: 'none', float:'right' }}>View Details</Link> {/* Link to the property page */}
                                                 <button className="btn btn-primary" onClick={() => addToFavorites(item)} style={{ float: 'left'}}>Add to Favorites</button> {/* Button to add item to favorites */}
                                             </div>
+
                                         </div>
                                     </div>
                                 ))}
@@ -140,13 +151,18 @@ const Properties = () => {
                             width: '27%',
                             marginLeft: '80px'
                         }}
+
                         onDragOver={allowDrop} // Allow drop on favorites box
                         onDrop={handleDropToFavorites} // Handle drop event on favorites box
                     >
+
                         <h4 style={{color: '#575e62', margin: '20px 20px'}}>Favorites <i className="fas fa-heart"></i> </h4>
+
                         {favorites.length === 0 ? (
+
                             <p style={{margin:'20px 20px'}}><strong>No favorites yet.</strong></p> // Display message if no favorites
                         ) : (
+
                             <>
                                 <ul className="list-group">
                                     {favorites.map(fav => (
@@ -157,6 +173,7 @@ const Properties = () => {
                                             draggable
                                             onDragStart={(event) => handleDragStart(event, fav)} // Handle drag start event
                                         >
+
                                             <div>
                                                 <img 
                                                     src={`/${Array.isArray(fav.pictures) && fav.pictures.length > 0 ? fav.pictures[0] : 'default.webp'}`} 
@@ -165,15 +182,21 @@ const Properties = () => {
                                                     height="70" 
                                                     className="mr-2" 
                                                 />
+
                                                 <span style={{ marginLeft: '20px' }}>{fav.type}</span>
+
                                             </div>
+
                                             <button className="btn btn-danger btn-sm" onClick={() => removeFromFavorites(fav)}>Remove</button> {/* Button to remove item from favorites */}
+
                                         </li>
                                     ))}
                                 </ul>
+
                                 <div className="d-flex justify-content-end">
                                     <button className="btn btn-warning mt-3" onClick={clearFavorites}>Clear All</button> {/* Button to clear all favorites */}
                                 </div>
+                                
                             </>
                         )}
                     </div>
