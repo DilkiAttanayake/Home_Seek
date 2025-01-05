@@ -16,6 +16,7 @@ const PropertyDetails = ({ property }) => {
         {/* Display property description */}
         <p>{property.card}</p>
       </TabPanel>
+
       <TabPanel>
         {/* Display floor plan image */}
         <h4 style={{ color: '#575e62' }}>Floor Plan</h4>
@@ -25,6 +26,7 @@ const PropertyDetails = ({ property }) => {
           style={{ width: '100%', height: '550px' }} 
         />
       </TabPanel>
+      
       <TabPanel>
         {/* Display Google Map with sanitized location */}
         <h4 style={{ color: '#575e62' }}>Google Map</h4>
