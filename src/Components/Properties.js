@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Import Link component for navigation
 import propertiesData from './properties.json'; // Import properties data from JSON file
 import Form from './Form'; // Import Form component
+import DOMPurify from 'dompurify'; // Import DOMPurify for sanitizing HTML
 
 const Properties = () => {
     const [favorites, setFavorites] = useState([]); // State to store favorite properties
@@ -114,11 +115,11 @@ const Properties = () => {
                                                 alt={item.type || 'No image available'} 
                                             />
                                             <div className="card-body">
-                                                <h5 className="card-title">{item.type}</h5>
-                                                <p className="card-text"><strong>Price:</strong> Rs.{item.price}</p>
-                                                <p className="card-text"><strong>Bedrooms:</strong> {item.bedrooms}</p>
-                                                <p className="card-text"><strong>Location:</strong> {item.location}</p>
-                                                <p className="card-text"><strong>Added Date:</strong> {`${item.added.day}-${item.added.month}-${item.added.year}`}</p>
+                                                <h5 className="card-title">{DOMPurify.sanitize(item.type)}</h5>
+                                                <p className="card-text"><strong>Price:</strong> Rs.{DOMPurify.sanitize(item.price.toString())}</p>
+                                                <p className="card-text"><strong>Bedrooms:</strong> {DOMPurify.sanitize(item.bedrooms.toString())}</p>
+                                                <p className="card-text"><strong>Location:</strong> {DOMPurify.sanitize(item.location)}</p>
+                                                <p className="card-text"><strong>Added Date:</strong> {DOMPurify.sanitize(`${item.added.day}-${item.added.month}-${item.added.year}`)}</p>
                                                 <Link to={`/property/${item.id}`} className="btn btn-link" style={{ textDecoration: 'none', float:'right' }}>View Details</Link> {/* Link to the property page */}
                                                 <button className="btn btn-primary" onClick={() => addToFavorites(item)} style={{ float: 'left'}}>Add to Favorites</button> {/* Button to add item to favorites */}
                                             </div>
