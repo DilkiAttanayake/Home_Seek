@@ -46,6 +46,14 @@ This project is a client-side web application for searching and displaying prope
 - **JavaScript**: For handling the logic and interactivity of the application.
 - **Local Storage**: To store the user's favorite properties.
 
+## Utilized Packages and Dependencies
+
+- **React**: A JavaScript library for building user interfaces.
+- **React Router**: A collection of navigational components.
+- **React Bootstrap**: Bootstrap components built with React.
+- **React Widgets**: A set of accessible, customizable, and localizable React components.
+- **DOMPurify**: A DOM-only, super-fast, uber-tolerant XSS sanitizer for HTML, MathML, and SVG.
+
 ## Installation
 
 To get started with the project:
