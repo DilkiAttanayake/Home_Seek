@@ -1,9 +1,10 @@
 import React, { useState } from "react"; // Import React and useState hook
 import propertiesData from "./properties.json";
-import { Button, Form as BootstrapForm, Row, Col, Card, Alert } from "react-bootstrap"; // Import Bootstrap components
-import Select from 'react-select'; // Import Select component for enhanced dropdowns
+import { Button, Row, Col, Card, Alert } from "react-bootstrap"; // Import Bootstrap components
 import { Link } from 'react-router-dom';
 import DOMPurify from 'dompurify'; // Import DOMPurify for sanitizing HTML
+import { Combobox, DateTimePicker } from 'react-widgets'; // Import React Widgets
+import "react-widgets/styles.css"  // Import React Widgets CSS
 
 const Form = ({ favoriteProperties }) => {
 
@@ -31,16 +32,21 @@ const Form = ({ favoriteProperties }) => {
     }));
   };
 
+  const [hasSearched, setHasSearched] = useState(false); // Tracks if a search has been executed
+
+
   // Handle changes in the select dropdown
-  const handleSelectChange = (selectedOption) => {
+  const handleSelectChange = (value) => {
     setSearchCriteria((prevState) => ({
       ...prevState,
-      type: selectedOption && selectedOption.value !== "Any" ? selectedOption.value : "",
+      type: value !== "Any" ? value : "",
     }));
   };
 
   // Handle the search button click
   const handleSearch = () => {
+    setHasSearched(true); // Mark that a search has been performed
+
     // Validate the form to ensure that price and bedroom ranges are valid
     if (
       (searchCriteria.minPrice && searchCriteria.maxPrice && searchCriteria.minPrice > searchCriteria.maxPrice) ||
@@ -84,108 +90,107 @@ const Form = ({ favoriteProperties }) => {
   return (
     <div className="container mt-5">
       <div className="d-flex justify-content-center">
-        <div className="search-form mb-4 p-4" style={{ border: "4px solid grey", borderRadius: "5px", width: "40%", backgroundColor: "#e3fdfd" }}>
-          <BootstrapForm>
-            <Row>
-              <Col md={12} className="mb-3">
-                <BootstrapForm.Label htmlFor="type">Type:</BootstrapForm.Label>
-                <Select
+      <div className="search-form mb-4 p-4" style={{ border: "2px solid grey", borderRadius: "5px", backgroundColor: "#A4D8E1", width: "100%" }}>
+  
+          <form>
+          <Row className="g-3">
+            <Col md={6}>
+            <label htmlFor="type" className="form-label">Type</label>
+                <Combobox
                   id="type"
-                  value={searchCriteria.type ? { label: searchCriteria.type, value: searchCriteria.type } : { label: "Any", value: "Any" }}
+                  value={searchCriteria.type || "Any"}
                   onChange={handleSelectChange}
-                  options={[
-                    { value: "Any", label: "Any" },
-                    { value: "House", label: "House" },
-                    { value: "Flat", label: "Flat" },
-                  ]}
+                  data={["Any", "House", "Flat"]}
                   aria-label="Property Type"
                 />
               </Col>
 
-              <Col md={12} className="mb-3">
-                <BootstrapForm.Label htmlFor="minPrice">Min Price:</BootstrapForm.Label>
-                <BootstrapForm.Control
+              <Col md={3}>
+                <label htmlFor="minPrice" className="form-label">Min Price</label>
+                <input
                   type="number"
+                  className="form-control"
                   name="minPrice"
                   value={searchCriteria.minPrice}
                   onChange={handleChange}
                   aria-label="Minimum Price"
-                  style={{ borderColor: "grey" }}
                 />
               </Col>
 
-              <Col md={12} className="mb-3">
-                <BootstrapForm.Label htmlFor="maxPrice">Max Price:</BootstrapForm.Label>
-                <BootstrapForm.Control
+              <Col md={3}>
+                <label htmlFor="maxPrice" className="form-label">Max Price</label>
+                <input
                   type="number"
+                  className="form-control"
                   name="maxPrice"
                   value={searchCriteria.maxPrice}
                   onChange={handleChange}
                   aria-label="Maximum Price"
-                  style={{ borderColor: "grey" }}
                 />
               </Col>
 
-              <Col md={12} className="mb-3">
-                <BootstrapForm.Label htmlFor="minBedrooms">Min Bedrooms:</BootstrapForm.Label>
-                <BootstrapForm.Control
+
+              <Col md={3}>
+                <label htmlFor="minBedrooms" className="form-label">Min Bedrooms</label>
+                <input
                   type="number"
+                  className="form-control"
                   name="minBedrooms"
                   value={searchCriteria.minBedrooms}
                   onChange={handleChange}
                   aria-label="Minimum Bedrooms"
-                  style={{ borderColor: "grey" }}
                 />
               </Col>
 
-              <Col md={12} className="mb-3">
-                <BootstrapForm.Label htmlFor="maxBedrooms">Max Bedrooms:</BootstrapForm.Label>
-                <BootstrapForm.Control
+
+              <Col md={3}>
+                <label htmlFor="maxBedrooms" className="form-label">Max Bedrooms</label>
+                <input
                   type="number"
+                  className="form-control"
                   name="maxBedrooms"
                   value={searchCriteria.maxBedrooms}
                   onChange={handleChange}
                   aria-label="Maximum Bedrooms"
-                  style={{ borderColor: "grey" }}
                 />
               </Col>
 
-              <Col md={12} className="mb-3">
-                <BootstrapForm.Label htmlFor="addedDate">Added Date:</BootstrapForm.Label>
-                <BootstrapForm.Control
-                  type="date"
+              <Col md={6}>
+                <label htmlFor="addedDate" className="form-label">Added Date</label>
+                <DateTimePicker
                   name="addedDate"
                   value={searchCriteria.addedDate}
-                  onChange={handleChange}
+                  onChange={date => setSearchCriteria({ ...searchCriteria, addedDate: date })}
                   aria-label="Added Date"
-                  style={{ borderColor: "grey" }}
                 />
               </Col>
 
-              <Col md={12} className="mb-3">
-                <BootstrapForm.Label htmlFor="postcode">Postcode:</BootstrapForm.Label>
-                <BootstrapForm.Control
+              <Col md={6}>
+                <label htmlFor="postcode" className="form-label">Postcode</label>
+                <input
                   type="text"
+                  className="form-control"
                   name="postcode"
                   value={searchCriteria.postcode}
                   onChange={handleChange}
                   aria-label="Postcode"
-                  style={{ borderColor: "grey" }}
                 />
               </Col>
             </Row>
 
             {error && <Alert variant="danger">{error}</Alert>} {/* Display error message if any */}
 
-            <div className="d-flex justify-content-center">
+            <div className="d-flex justify-content-center mt-4">
               <Button variant="info" onClick={handleSearch} aria-label="Search Button">Search</Button> {/* Search button */}
             </div>
-          </BootstrapForm>
+          </form>
         </div>
       </div>
 
       {/* Results */}
-      <div className="results-box" style={{ border: "4px solid grey", borderRadius: "5px", padding: "20px", backgroundColor: "#e3fdfd" }}>
+      {hasSearched && (
+      <div className="results-box" style={{ border: "2px solid grey", borderRadius: "5px", padding: "20px", backgroundColor: "#A4D8E1" }}>
+
         {results.length > 0 ? (
           results.map((property) => (
             <Card className="mb-3" key={property.id}>
@@ -210,10 +215,11 @@ const Form = ({ favoriteProperties }) => {
               </Row>
             </Card>
           ))
-        ) : (
-          <p><strong>No results found</strong></p> // Display message if no results found
-        )}
+        )  : hasSearched ?  (
+          <p>No results found</p> // Display message if no results found
+        ) : null} {/* Display nothing before searching */}
       </div>
+      )}
 
       <h4 style={{ color: '#575e62', margin: '20px 20px' }}>Favorites <i className="fas fa-heart"></i> </h4>
 
