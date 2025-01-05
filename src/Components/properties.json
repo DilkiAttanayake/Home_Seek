@@ -10,6 +10,7 @@
 			"location":"Petts Wood Road, Orpington BR5",
 			"pictures":["House_1/1.webp","House_1/2.webp","House_1/3.webp","House_1/4.webp","House_1/5.webp","House_1/6.webp"],
 			"floorPlan":"Floor_Plans/1.png",
+            "url":"properties/prop1.html",
             "added": {
                 "month":"October",
                 "day":12,
