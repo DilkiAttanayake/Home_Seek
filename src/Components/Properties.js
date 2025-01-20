@@ -10,15 +10,19 @@ const Properties = () => {
     const [showAdvancedSearch, setShowAdvancedSearch] = useState(false); // State to toggle advanced search
 
     useEffect(() => {
-        // Save favorites to local storage whenever they change
-        localStorage.setItem('favorites', JSON.stringify(favorites));
+        // Save favorites to localStorage whenever favorites state changes
+        if (favorites.length > 0) {
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+        }
     }, [favorites]);
 
     useEffect(() => {
-        // Load items and favorites from local storage on component mount
+        // Load items from propertiesData and favorites from localStorage on component mount
         setItems(propertiesData.properties);
-        const storedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        setFavorites(storedFavorites);
+        const storedFavorites = localStorage.getItem('favorites');
+        if (storedFavorites) {
+            setFavorites(JSON.parse(storedFavorites));  // Parse and set the stored favorites
+        }
     }, []);
 
     const toggleAdvancedSearch = () => {
