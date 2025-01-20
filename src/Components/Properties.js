@@ -38,11 +38,16 @@ const Properties = () => {
     };
 
     const removeFromFavorites = (item) => {
-        setFavorites(favorites.filter(fav => fav.id !== item.id)); // Remove item from favorites
+        const updatedFavorites = favorites.filter(fav => fav.id !== item.id); // Remove item from favorites
+        setFavorites(updatedFavorites); // Update favorites state
+        localStorage.setItem('favorites', JSON.stringify(updatedFavorites)); // Update localStorage
     };
+    
 
     const clearFavorites = () => {
         setFavorites([]); // Clear all favorites
+        // Clear favorites in localStorage as well
+        localStorage.removeItem('favorites');
     };
 
     const handleDragStart = (event, item) => {
