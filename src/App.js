@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Properties />} /> {/* Route for properties listing */}
           <Route path="/property/:propertyId" element={<PropertyPage />} /> {/* Route for individual property page */}
-          <Route path="/nav/:propertyId" element={<PropertyPage />} /> {/* Route for property page form nav search */}
+          {/* <Route path="/nav/:propertyId" element={<PropertyPage />} /> {/* Route for property page form nav search */}  
           <Route path="/form/:propertyId" element={<PropertyPage />} /> {/* Route for property page from form search*/}
         </Routes>
 
