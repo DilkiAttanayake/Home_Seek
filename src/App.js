@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Nav from './components/Nav';
+import Nav from './components/nav';
 import Footer from './components/Footer';
 import Properties from './components/Properties';
 import PropertyPage from './components/PropertyPage'; // Import the PropertyPage component
@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Properties />} /> {/* Route for properties listing */}
           <Route path="/property/:propertyId" element={<PropertyPage />} /> {/* Route for individual property page */}
-          {/* <Route path="/nav/:propertyId" element={<PropertyPage />} /> {/* Route for property page form nav search */}  
+          <Route path="/nav/:propertyId" element={<PropertyPage />} /> {/* Route for property page form nav search */} 
           <Route path="/form/:propertyId" element={<PropertyPage />} /> {/* Route for property page from form search*/}
         </Routes>
 

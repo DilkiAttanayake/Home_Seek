@@ -3,7 +3,7 @@ import propertiesData from './properties.json'; // Import the properties data
 import Logo from './Logo.png'; // Import the logo image
 import { Link } from 'react-router-dom'; // Import Link component
 
-function Nav() {
+function nav() {
 
     // search section
     const [searchType, setSearchType] = useState(''); // State for search type (e.g., House, Flat)
@@ -116,4 +116,4 @@ function Nav() {
     );
 }
 
-export default Nav;
+export default nav;
