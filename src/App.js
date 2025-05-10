@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Nav from './components/nav';
+import Nav from './components/Nav';
 import Footer from './components/Footer';
 import Properties from './components/Properties';
 import PropertyPage from './components/PropertyPage'; // Import the PropertyPage component
